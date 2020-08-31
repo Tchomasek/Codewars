@@ -14,24 +14,24 @@ def format_duration(input):
     minutes=input//sim
     input-=minutes*sim
     seconds=input
-    print('years:', years,' days:',days,' hours:',hours,' minutes:',minutes,' seconds:', seconds)
-    values=[years,days,hours,minutes,seconds]
+    values=[years,days,hours,minutes,seconds,0]
     words=['year','day','hour','minute','second']
     result=''
-    for i in range(len(values)):
+    for i in range(5):
         if values[i]:
-
+            if sum(values[i+1:])==0 and sum(values[:i])!=0:
+                result+=' and '
+            if sum(values[i+1:])!=0 and sum(values[:i])!=0:
+                result+=', '
             result+=str(values[i])+' '+words[i]
             if values[i]>1:
                 result+='s'
-            result+=', '
-    result=result[:-2]
 
     return result
 
 
 
-print(format_duration(3524687))
+print(format_duration(9194445))
 
 
 
